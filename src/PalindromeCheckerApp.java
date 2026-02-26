@@ -1,23 +1,29 @@
 public class PalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "A man a plan a canal panama";
 
-        boolean result = check(input, 0, input.length() - 1);
+        boolean result = isPalindrome(input);
 
-        System.out.println("input : " + input);
+        System.out.println("Input : " + input);
         System.out.println("Is Palindrome? " + result);
     }
 
-    private static boolean check(String s, int start, int end) {
+    private static boolean isPalindrome(String input) {
 
-        if (start >= end) {
-            return true;
+        String normalized = input
+                .replaceAll("\\s+", "")
+                .toLowerCase();
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            if (normalized.charAt(i) !=
+                    normalized.charAt(normalized.length() - 1 - i)) {
+
+                return false;
+            }
         }
 
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-        return check(s, start + 1, end - 1);
+        return true;
     }
 }
